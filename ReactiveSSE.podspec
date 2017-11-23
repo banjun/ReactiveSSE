@@ -14,4 +14,5 @@ You can observe event streams sent via Server Sent Events (SSE).
   s.ios.deployment_target = '10.0'
   s.source_files = 'ReactiveSSE/Classes/**/*'
   s.dependency 'ReactiveSwift', '~> 3.0'
+  s.dependency 'FootlessParser', '~> 0.4'
 end

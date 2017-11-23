@@ -1,49 +1,80 @@
-// https://github.com/Quick/Quick
-
 import Quick
 import Nimble
 import ReactiveSSE
+import ReactiveSwift
+import Result
 
-class TableOfContentsSpec: QuickSpec {
+class ReactiveSSESpec: QuickSpec {
     override func spec() {
-        describe("these will fail") {
+        describe("parse SSE data stream body") {
+            it("lf") {
+                let pipe = Signal<Data, NoError>.pipe()
+                let payload = "event: update\ndata: {}\n\n"
 
-            it("can do maths") {
-                expect(1) == 2
+                var result: Result<SSEvent, NoError>?
+                pipe.output.serverSentEvents().observeResult {result = $0}
+                pipe.input.send(value: payload.data(using: .utf8)!)
+                expect(result?.value?.type) == "update"
+                expect(result?.value?.data) == "{}"
             }
+            it("cr") {
+                let pipe = Signal<Data, NoError>.pipe()
+                let payload = "event: update\rdata: {}\r\r"
 
-            it("can read") {
-                expect("number") == "string"
+                var result: Result<SSEvent, NoError>?
+                pipe.output.serverSentEvents().observeResult {result = $0}
+                pipe.input.send(value: payload.data(using: .utf8)!)
+                expect(result?.value?.type) == "update"
+                expect(result?.value?.data) == "{}"
             }
+            it("crlf") {
+                let pipe = Signal<Data, NoError>.pipe()
+                let payload = "event: update\r\ndata: {}\r\n\r\n"
 
-            it("will eventually fail") {
-                expect("time").toEventually( equal("done") )
+                var result: Result<SSEvent, NoError>?
+                pipe.output.serverSentEvents().observeResult {result = $0}
+                pipe.input.send(value: payload.data(using: .utf8)!)
+                expect(result?.value?.type) == "update"
+                expect(result?.value?.data) == "{}"
             }
-            
-            context("these will pass") {
+            it("separated buffers") {
+                let pipe = Signal<Data, NoError>.pipe()
+                let payload1 = "event: update\n"
+                let payload2 = "data: {}\n"
+                let payload3 = "\n"
 
-                it("can do maths") {
-                    expect(23) == 23
-                }
+                var result: Result<SSEvent, NoError>?
+                pipe.output.serverSentEvents().observeResult {result = $0}
+                pipe.input.send(value: payload1.data(using: .utf8)!)
+                pipe.input.send(value: payload2.data(using: .utf8)!)
+                pipe.input.send(value: payload3.data(using: .utf8)!)
+                expect(result?.value?.type) == "update"
+                expect(result?.value?.data) == "{}"
+            }
+            it("comments") {
+                let pipe = Signal<Data, NoError>.pipe()
+                let payload = ":comment\nevent: update\n:comment2\ndata: {}\n:comment3\n\n\n"
 
-                it("can read") {
-                    expect("🐮") == "🐮"
-                }
+                var result: Result<SSEvent, NoError>?
+                pipe.output.serverSentEvents().observeResult {result = $0}
+                pipe.input.send(value: payload.data(using: .utf8)!)
+                expect(result?.value?.type) == "update"
+                expect(result?.value?.data) == "{}"
+            }
+            it("multiple events") {
+                let pipe = Signal<Data, NoError>.pipe()
+                let payload1 = "event: update1\ndata: {1}\n\n"
+                let payload2 = "event: update2\ndata: {2}\n\n"
 
-                it("will eventually pass") {
-                    var time = "passing"
-
-                    DispatchQueue.main.async {
-                        time = "done"
-                    }
-
-                    waitUntil { done in
-                        Thread.sleep(forTimeInterval: 0.5)
-                        expect(time) == "done"
-
-                        done()
-                    }
-                }
+                var results: [Result<SSEvent, NoError>] = []
+                pipe.output.serverSentEvents().observeResult {results.append($0)}
+                pipe.input.send(value: payload1.data(using: .utf8)!)
+                pipe.input.send(value: payload2.data(using: .utf8)!)
+                expect(results.count) == 2
+                expect(results.first?.value?.type) == "update1"
+                expect(results.first?.value?.data) == "{1}"
+                expect(results.last?.value?.type) == "update2"
+                expect(results.last?.value?.data) == "{2}"
             }
         }
     }

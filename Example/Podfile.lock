@@ -1,7 +1,9 @@
 PODS:
+  - FootlessParser (0.4.1)
   - Nimble (7.0.3)
   - Quick (1.2.0)
   - ReactiveSSE (0.1.0):
+    - FootlessParser (~> 0.4)
     - ReactiveSwift (~> 3.0)
   - ReactiveSwift (3.0.0):
     - Result (~> 3.2)
@@ -17,9 +19,10 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
+  FootlessParser: 4705a9a740675b7439d9563f2fad83f7b84fc773
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-  ReactiveSSE: ab7d95803c37e9092b0e199b45daca5e85804e5b
+  ReactiveSSE: 88bd72b2eee5b184f2244f59a1f0acfa441eb557
   ReactiveSwift: d9fe0db33c1aaabecb092e8de83cf52875c0de6f
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
 

@@ -1,0 +1,22 @@
+PODS:
+  - Nimble (7.0.2)
+  - Quick (1.2.0)
+  - ReactiveSSE (0.1.0)
+
+DEPENDENCIES:
+  - Nimble (~> 7.0.2)
+  - Quick (~> 1.2.0)
+  - ReactiveSSE (from `../`)
+
+EXTERNAL SOURCES:
+  ReactiveSSE:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  ReactiveSSE: 458d756daf04155e056d637aa14fb298aa4d3856
+
+PODFILE CHECKSUM: 52f5bbc2d3fabb62d9f36dfb39e88a19f06f47f5
+
+COCOAPODS: 1.3.1

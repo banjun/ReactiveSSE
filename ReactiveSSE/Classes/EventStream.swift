@@ -19,6 +19,6 @@ struct EventStream {
     static let space: Parser<Character, Character> = char(" ")
     static let eol: Parser<Character, Character> = oneOf(["\r\n", "\r", "\n"])
     static let event: Parser<Character, [Event]> = zeroOrMore((Event.comment <^> comment) <|> (Event.field <^> field)) <* eol
-    static let comment: Parser<Character, Comment> = string(":") *> zeroOrMore(anyChar) <* eol
+    static let comment: Parser<Character, Comment> = char(":") *> zeroOrMore(anyChar) <* eol
     static let field: Parser<Character, Field> = curry(Field.init) <^> oneOrMore(nameChar) <* char(":") <* optional(space) <*> zeroOrMore(anyChar) <* eol
 }

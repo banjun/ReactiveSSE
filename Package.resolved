@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FootlessParser",
+        "repositoryURL": "https://github.com/kareman/FootlessParser",
+        "state": {
+          "branch": null,
+          "revision": "8792f4e4e809e943d0f8dcda25b82058e8eb00cf",
+          "version": "0.4.1"
+        }
+      },
+      {
+        "package": "ReactiveSwift",
+        "repositoryURL": "https://github.com/ReactiveCocoa/ReactiveSwift",
+        "state": {
+          "branch": null,
+          "revision": "2ec944c43ef9cf6b1380629e3ea483f62a7afaef",
+          "version": "3.0.0"
+        }
+      },
+      {
+        "package": "Result",
+        "repositoryURL": "https://github.com/antitypical/Result.git",
+        "state": {
+          "branch": null,
+          "revision": "7477584259bfce2560a19e06ad9f71db441fff11",
+          "version": "3.2.4"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

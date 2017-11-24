@@ -22,7 +22,7 @@ SPEC CHECKSUMS:
   FootlessParser: 4705a9a740675b7439d9563f2fad83f7b84fc773
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-  ReactiveSSE: 88bd72b2eee5b184f2244f59a1f0acfa441eb557
+  ReactiveSSE: 20e24e2851ee50cb5378ba046a65c7345f04ef80
   ReactiveSwift: d9fe0db33c1aaabecb092e8de83cf52875c0de6f
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
 

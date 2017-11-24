@@ -4,6 +4,7 @@ private let defaultMaxBuffer = 10_000_000
 
 public enum SSError: Error {
     case notSSE(statusCode: Int, mimeType: String?)
+    case nonUTF8(Data)
     case session(NSError?)
 }
 
@@ -42,7 +43,7 @@ public struct ReactiveSSE {
 }
 
 final class SessionDataPipe: NSObject, URLSessionDataDelegate {
-    let pipe = Signal<Data, SSError>.pipe()
+    let pipe = Signal<String, SSError>.pipe()
 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         guard let response = response as? HTTPURLResponse else { return completionHandler(.cancel) }
@@ -55,10 +56,11 @@ final class SessionDataPipe: NSObject, URLSessionDataDelegate {
     }
 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        // non-main queue cause weird deep stack and crash on parse
-        DispatchQueue.main.async {
-            self.pipe.input.send(value: data)
+        guard let s = String(data: data, encoding: .utf8) else {
+            pipe.input.send(error: .nonUTF8(data))
+            return
         }
+        pipe.input.send(value: s)
     }
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
@@ -66,33 +68,27 @@ final class SessionDataPipe: NSObject, URLSessionDataDelegate {
     }
 }
 
-extension Signal where Value == Data {
+extension Signal where Value == String {
     public func serverSentEvents(maxBuffer: Int? = nil) -> Signal<SSEvent, Error> {
         let maxBuffer = maxBuffer ?? defaultMaxBuffer
-        var buffer = Data()
+        var buffer: String = ""
         return .init { observer, lifetime in
             lifetime += self.observe { event in
                 switch event {
-                case .value(let d):
-                    guard buffer.count + d.count <= maxBuffer else {
+                case .value(let s):
+                    guard buffer.count + s.count <= maxBuffer else {
                         NSLog("%@", "\(#function): buffer size is about to be maxBuffer. automatically resetting buffers.")
                         buffer.removeAll()
                         return
                     }
-                    buffer.append(d)
+                    buffer += s
 
                     // try parsing or wait for next data (incomplete buffer)
-                    guard let s = String(data: buffer, encoding: .utf8),
-                        let parsed = try? EventStream.event.parse(AnyCollection(s)) else { return }
+                    guard let parsed = try? EventStream.event.parse(AnyCollection(buffer)) else { return }
 
                     observer.send(value: SSEvent(parsed.output))
 
-                    buffer.removeAll(keepingCapacity: true)
-                    guard let remaining = String(parsed.remainder).data(using: .utf8) else {
-                        NSLog("%@", "\(#function): cannot restore parse remainders to the buffer. remainders ignored.")
-                        return
-                    }
-                    buffer.append(remaining)
+                    buffer = String(parsed.remainder)
                 case .failed(let e):
                     observer.send(error: e)
                 case .completed:

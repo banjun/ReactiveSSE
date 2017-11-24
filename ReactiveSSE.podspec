@@ -12,6 +12,7 @@ You can observe event streams sent via Server Sent Events (SSE).
   s.source           = { :git => 'https://github.com/banjun/ReactiveSSE.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/banjun'
   s.ios.deployment_target = '10.0'
+  s.osx.deployment_target = '10.12'
   s.source_files = 'ReactiveSSE/Classes/**/*'
   s.dependency 'ReactiveSwift', '~> 3.0'
   s.dependency 'FootlessParser', '~> 0.4'

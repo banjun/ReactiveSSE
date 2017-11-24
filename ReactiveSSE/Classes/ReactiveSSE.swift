@@ -20,7 +20,7 @@ public struct ReactiveSSE {
             let configuration = URLSessionConfiguration.default
             configuration.timeoutIntervalForRequest = 60
             configuration.timeoutIntervalForResource = 60 * 60
-            if #available(iOS 11.0, *) {
+            if #available(iOS 11.0, OSX 10.13, *) {
                 configuration.waitsForConnectivity = true
             }
 

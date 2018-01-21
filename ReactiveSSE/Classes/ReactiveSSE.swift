@@ -29,7 +29,7 @@ public struct ReactiveSSE {
             let session = URLSession(configuration: URLSessionConfiguration.default, delegate: delegate, delegateQueue: queue)
 
             let task = session.dataTask(with: req)
-            lifetime.observeEnded(task.cancel)
+            lifetime.observeEnded(session.invalidateAndCancel)
             task.resume()
         }
     }

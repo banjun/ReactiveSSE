@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ReactiveSSE'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'Server Sent Events (SSE) parser operators for ReactiveSwift'
   s.description      = <<-DESC
 Server Sent Events (SSE) parser operators for ReactiveSwift.

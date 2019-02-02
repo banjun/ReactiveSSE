@@ -284,7 +284,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ReactiveSSE_Tests/Pods-ReactiveSSE_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ReactiveSSE_Tests/Pods-ReactiveSSE_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
@@ -295,7 +295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactiveSSE_Tests/Pods-ReactiveSSE_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactiveSSE_Tests/Pods-ReactiveSSE_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DDD6EB2598DBFD70E9C62555 /* [CP] Check Pods Manifest.lock */ = {
@@ -322,7 +322,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ReactiveSSE_Example/Pods-ReactiveSSE_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ReactiveSSE_Example/Pods-ReactiveSSE_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FootlessParser/FootlessParser.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSSE/ReactiveSSE.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
@@ -337,7 +337,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReactiveSSE_Example/Pods-ReactiveSSE_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReactiveSSE_Example/Pods-ReactiveSSE_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

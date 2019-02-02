@@ -3,9 +3,11 @@ import ReactiveSwift
 
 public struct ReactiveSSE {
     public let producer: SignalProducer<SSEvent, SSError>
+    private let underlyingQueue: DispatchQueue
 
     public init(urlRequest req: URLRequest, maxBuffer: Int? = nil) {
-        producer = .init { observer, lifetime in
+        self.underlyingQueue = DispatchQueue(label: "ReactiveSSE", qos: .utility)
+        self.producer = .init { [unowned underlyingQueue] observer, lifetime in
             var req = req
             req.cachePolicy = .reloadIgnoringCacheData
             req.timeoutInterval = 365 * 24 * 60 * 60
@@ -18,7 +20,7 @@ public struct ReactiveSSE {
             }
 
             let queue = OperationQueue()
-            queue.underlyingQueue = DispatchQueue(label: "ReactiveSSE", qos: .utility)
+            queue.underlyingQueue = underlyingQueue
 
             // use session delegate to process data stream
             let delegate = SessionDataPipe()

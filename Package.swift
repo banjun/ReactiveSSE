@@ -10,7 +10,7 @@ let package = Package(
             name: "ReactiveSSE",
             targets: ["ReactiveSSE"])],
     dependencies: [
-        .package(url: "https://github.com/ReactiveCocoa/ReactiveSwift", .upToNextMajor(from: "3.0.0")),
+        .package(url: "https://github.com/ReactiveCocoa/ReactiveSwift", .upToNextMajor(from: "6.0.0")),
         .package(url: "https://github.com/kareman/FootlessParser", .upToNextMajor(from: "0.4.1"))],
     targets: [
         .target(

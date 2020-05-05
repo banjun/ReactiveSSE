@@ -1,6 +1,6 @@
 # ReactiveSSE
 
-[![CI Status](http://img.shields.io/travis/banjun/ReactiveSSE.svg?style=flat)](https://travis-ci.org/banjun/ReactiveSSE)
+![CI](https://github.com/banjun/ReactiveSSE/workflows/CI/badge.svg)
 [![Version](https://img.shields.io/cocoapods/v/ReactiveSSE.svg?style=flat)](http://cocoapods.org/pods/ReactiveSSE)
 [![License](https://img.shields.io/cocoapods/l/ReactiveSSE.svg?style=flat)](http://cocoapods.org/pods/ReactiveSSE)
 [![Platform](https://img.shields.io/cocoapods/p/ReactiveSSE.svg?style=flat)](http://cocoapods.org/pods/ReactiveSSE)

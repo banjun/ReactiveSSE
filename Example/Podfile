@@ -6,8 +6,5 @@ target 'ReactiveSSE_Example' do
 
   target 'ReactiveSSE_Tests' do
     inherit! :search_paths
-
-    pod 'Quick'
-    pod 'Nimble'
   end
 end

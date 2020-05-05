@@ -23,4 +23,4 @@ jobs:
     - uses: actions/checkout@v2
     - run: bundle update --bundler
     - run: bundle install
-    - run: bundle exec pod spec lint
+    - run: bundle exec pod lib lint

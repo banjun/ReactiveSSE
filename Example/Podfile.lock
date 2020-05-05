@@ -1,22 +1,16 @@
 PODS:
   - FootlessParser (0.5.2)
-  - Nimble (8.0.7)
-  - Quick (2.2.0)
   - ReactiveSSE (0.3.2):
     - FootlessParser (~> 0.5)
     - ReactiveSwift (~> 6.0)
   - ReactiveSwift (6.2.1)
 
 DEPENDENCIES:
-  - Nimble
-  - Quick
   - ReactiveSSE (from `../`)
 
 SPEC REPOS:
   trunk:
     - FootlessParser
-    - Nimble
-    - Quick
     - ReactiveSwift
 
 EXTERNAL SOURCES:
@@ -25,11 +19,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FootlessParser: 521916d592fa6cba06cfca6f4b5d4f5a2d49175a
-  Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
-  Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   ReactiveSSE: 18c80e3ac30e9f084703799271de15af9c6e1a49
   ReactiveSwift: 07ddf579f4eb3ee3bd656214f0461aaf2c0fd639
 
-PODFILE CHECKSUM: 2b1098092e69bd72b2c0e40d93c74974a069acbb
+PODFILE CHECKSUM: 6423f54d500b374ae505173fc26e9c097cb6bc52
 
 COCOAPODS: 1.9.1

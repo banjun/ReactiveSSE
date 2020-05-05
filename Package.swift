@@ -11,9 +11,15 @@ let package = Package(
             targets: ["ReactiveSSE"])],
     dependencies: [
         .package(url: "https://github.com/ReactiveCocoa/ReactiveSwift", .upToNextMajor(from: "6.0.0")),
-        .package(url: "https://github.com/kareman/FootlessParser", .upToNextMajor(from: "0.5.2"))],
+        .package(url: "https://github.com/kareman/FootlessParser", .upToNextMajor(from: "0.5.2")),
+    ],
     targets: [
         .target(
             name: "ReactiveSSE",
             dependencies: ["FootlessParser", "ReactiveSwift"],
-            path: "ReactiveSSE")])
+            path: "ReactiveSSE"),
+        .testTarget(
+            name: "ReactiveSSETests",
+            dependencies: ["ReactiveSSE", "FootlessParser", "ReactiveSwift"]),
+    ]
+)

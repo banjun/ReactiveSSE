@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ReactiveSSE'
-  s.version          = '0.3.2'
+  s.version          = '0.4.0'
   s.summary          = 'Server Sent Events (SSE) parser operators for ReactiveSwift'
   s.description      = <<-DESC
 Server Sent Events (SSE) parser operators for ReactiveSwift.
@@ -13,6 +13,7 @@ You can observe event streams sent via Server Sent Events (SSE).
   s.social_media_url = 'https://twitter.com/banjun'
   s.ios.deployment_target = '10.0'
   s.osx.deployment_target = '10.12'
+  s.swift_versions = ['5.0']
   s.source_files = 'ReactiveSSE/Classes/**/*'
   s.dependency 'ReactiveSwift', '~> 6.0'
   s.dependency 'FootlessParser', '~> 0.5'

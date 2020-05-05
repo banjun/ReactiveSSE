@@ -1,4 +1,4 @@
-// swift-tools-version:4.0
+// swift-tools-version:5.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -10,8 +10,8 @@ let package = Package(
             name: "ReactiveSSE",
             targets: ["ReactiveSSE"])],
     dependencies: [
-        .package(url: "https://github.com/ReactiveCocoa/ReactiveSwift", .upToNextMajor(from: "3.0.0")),
-        .package(url: "https://github.com/kareman/FootlessParser", .upToNextMajor(from: "0.4.1"))],
+        .package(url: "https://github.com/ReactiveCocoa/ReactiveSwift", .upToNextMajor(from: "6.0.0")),
+        .package(url: "https://github.com/kareman/FootlessParser", .upToNextMajor(from: "0.5.2"))],
     targets: [
         .target(
             name: "ReactiveSSE",

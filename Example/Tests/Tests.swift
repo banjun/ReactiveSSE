@@ -13,8 +13,8 @@ class ReactiveSSESpec: QuickSpec {
                 var result: Result<SSEvent, Never>?
                 pipe.output.serverSentEvents().observeResult {result = $0}
                 pipe.input.send(value: payload)
-                expect(result?.value?.type) == "update"
-                expect(result?.value?.data) == "{}"
+                expect(try? result?.get().type) == "update"
+                expect(try? result?.get().data) == "{}"
             }
             it("cr") {
                 let pipe = Signal<String, Never>.pipe()
@@ -23,8 +23,8 @@ class ReactiveSSESpec: QuickSpec {
                 var result: Result<SSEvent, Never>?
                 pipe.output.serverSentEvents().observeResult {result = $0}
                 pipe.input.send(value: payload)
-                expect(result?.value?.type) == "update"
-                expect(result?.value?.data) == "{}"
+                expect(try? result?.get().type) == "update"
+                expect(try? result?.get().data) == "{}"
             }
             it("crlf") {
                 let pipe = Signal<String, Never>.pipe()
@@ -33,8 +33,8 @@ class ReactiveSSESpec: QuickSpec {
                 var result: Result<SSEvent, Never>?
                 pipe.output.serverSentEvents().observeResult {result = $0}
                 pipe.input.send(value: payload)
-                expect(result?.value?.type) == "update"
-                expect(result?.value?.data) == "{}"
+                expect(try? result?.get().type) == "update"
+                expect(try? result?.get().data) == "{}"
             }
             it("separated buffers") {
                 let pipe = Signal<String, Never>.pipe()
@@ -47,8 +47,8 @@ class ReactiveSSESpec: QuickSpec {
                 pipe.input.send(value: payload1)
                 pipe.input.send(value: payload2)
                 pipe.input.send(value: payload3)
-                expect(result?.value?.type) == "update"
-                expect(result?.value?.data) == "{}"
+                expect(try? result?.get().type) == "update"
+                expect(try? result?.get().data) == "{}"
             }
             it("comments") {
                 let pipe = Signal<String, Never>.pipe()
@@ -57,8 +57,8 @@ class ReactiveSSESpec: QuickSpec {
                 var result: Result<SSEvent, Never>?
                 pipe.output.serverSentEvents().observeResult {result = $0}
                 pipe.input.send(value: payload)
-                expect(result?.value?.type) == "update"
-                expect(result?.value?.data) == "{}"
+                expect(try? result?.get().type) == "update"
+                expect(try? result?.get().data) == "{}"
             }
             it("multiple events") {
                 let pipe = Signal<String, Never>.pipe()
@@ -70,10 +70,10 @@ class ReactiveSSESpec: QuickSpec {
                 pipe.input.send(value: payload1)
                 pipe.input.send(value: payload2)
                 expect(results.count) == 2
-                expect(results.first?.value?.type) == "update1"
-                expect(results.first?.value?.data) == "{1}"
-                expect(results.last?.value?.type) == "update2"
-                expect(results.last?.value?.data) == "{2}"
+                expect(try? results.first?.get().type) == "update1"
+                expect(try? results.first?.get().data) == "{1}"
+                expect(try? results.last?.get().type) == "update2"
+                expect(try? results.last?.get().data) == "{2}"
             }
         }
     }

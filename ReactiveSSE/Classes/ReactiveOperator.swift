@@ -20,7 +20,9 @@ extension Signal where Value == String {
 
                     // try parsing or wait for next data (incomplete buffer)
                     while let parsed = try? EventStream.event.parse(AnyCollection(buffer)) {
-                        observer.send(value: SSEvent(parsed.output))
+                        if !parsed.output.isEmpty {
+                            observer.send(value: SSEvent(parsed.output))
+                        }
                         buffer = String(parsed.remainder)
                     }
                 case .failed(let e):

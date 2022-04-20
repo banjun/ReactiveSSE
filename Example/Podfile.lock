@@ -3,7 +3,7 @@ PODS:
   - ReactiveSSE (0.4.0):
     - FootlessParser (~> 0.5)
     - ReactiveSwift (~> 6.0)
-  - ReactiveSwift (6.6.0)
+  - ReactiveSwift (6.7.0)
 
 DEPENDENCIES:
   - ReactiveSSE (from `../`)
@@ -20,8 +20,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FootlessParser: 521916d592fa6cba06cfca6f4b5d4f5a2d49175a
   ReactiveSSE: 3492578cb4acd9f34a2778fc88909abe9f72ae7e
-  ReactiveSwift: be9407e2aaf8a11e53a5229255693cffd9a63ccf
+  ReactiveSwift: 208201d6ecc9734196d147aa76bc1f24b1b821fe
 
 PODFILE CHECKSUM: 6423f54d500b374ae505173fc26e9c097cb6bc52
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3
